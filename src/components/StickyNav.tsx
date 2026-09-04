@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { NAV_ITEMS } from '../config/links';
 
-function readActiveId() {
+type NavId = (typeof NAV_ITEMS)[number]['id'];
+
+function readActiveId(): NavId {
   const offset = 116;
-  let current = NAV_ITEMS[0].id;
+  let current: NavId = NAV_ITEMS[0].id;
 
   for (const item of NAV_ITEMS) {
     const el = document.getElementById(item.id);
@@ -17,7 +19,7 @@ function readActiveId() {
 }
 
 export default function StickyNav() {
-  const [activeId, setActiveId] = useState<string>(NAV_ITEMS[0].id);
+  const [activeId, setActiveId] = useState<NavId>(NAV_ITEMS[0].id);
 
   useEffect(() => {
     let frame = 0;
